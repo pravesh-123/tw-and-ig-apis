@@ -1,6 +1,7 @@
 require("dotenv").config();
 const app = require("express")();
 const axios = require("axios");
+const cors = require("cors");
 const TwitterClient = require("twitter-api-client").TwitterClient;
 const port = process.env.PORT || 5000;
 
@@ -10,6 +11,8 @@ const twitterClient = new TwitterClient({
   accessToken: process.env.TWITTER_ACCESS_TOKEN,
   accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
 });
+
+app.use(cors({ origin: "*" }));
 
 app.get("/", function (req, res) {
   res.send("Welcome to the twitter and instagram api API");
